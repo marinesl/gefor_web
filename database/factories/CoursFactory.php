@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Cours;
+use App\Models\User;
 use DateMalformedStringException;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -37,9 +38,10 @@ class CoursFactory extends Factory
             'heure_debut'    => $start->format('H:i:s'),
             'heure_fin'      => $end->format('H:i:s'),
             'salle'          => 'Salle ' . fake($local)->numberBetween(1, 10),
-            'professeur'     => 'Professeur ' . fake($local)->name(),
             'date_validation'=> $date_validation,
             'valide'         => $valide,
+
+            'user_id' => User::factory(),
         ];
     }
 }

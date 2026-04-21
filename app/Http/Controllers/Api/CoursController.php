@@ -37,10 +37,12 @@ class CoursController extends Controller
     }
 
     /**
-     * Display the specified resource (with id))
+     * Display the specified resource (with id)
      */
-    public function show(Cours $cours)
+    public function show(int $id)
     {
+        $cours = Cours::find($id)->load(['user']);
+
         return response()->json($cours);
     }
 

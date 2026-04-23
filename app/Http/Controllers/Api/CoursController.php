@@ -13,7 +13,10 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours = Cours::orderBy('date')->orderBy('heure_debut')->get();
+        $cours = Cours::whereDate('date', '>=', now()->toDateString())
+            ->orderBy('date')
+            ->orderBy('heure_debut')
+            ->get();
 
         return response()->json($cours);
     }
@@ -41,7 +44,7 @@ class CoursController extends Controller
      */
     public function show(int $id)
     {
-        $cours = Cours::find($id)->load(['user']);
+        $cours = Cours::find($id);
 
         return response()->json($cours);
     }
@@ -54,8 +57,8 @@ class CoursController extends Controller
         $validated = $request->validate([
             'matiere' => ['required', 'string', 'max:255'],
             'date' => ['required', 'date_format:Y-m-d'],
-            'heure_debut' => ['required', 'time'],
-            'heure_fin' => ['required', 'time'],
+            'heure_debut' => ['required', 'date_format:H:i'],
+            'heure_fin' => ['required', 'date_format:H:i'],
             'salle' => ['required', 'string', 'max:255'],
         ]);
 

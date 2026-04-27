@@ -31,6 +31,7 @@ class User extends Authenticatable
         ];
     }
 
+    // Un user a plusieurs cours
     public function cours()
     {
         return $this->hasMany(Cours::class);

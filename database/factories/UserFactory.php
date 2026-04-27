@@ -27,13 +27,13 @@ class UserFactory extends Factory
         $local = 'fr_FR';
 
         return [
-            'name' => fake($local)->firstName(),
+            'name' => fake($local)->lastName(),
             'prenom' => fake($local)->firstName(),
             'username' => fake($local)->userName(),
             'email' => fake($local)->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('azerty'),
-            'remember_token' => Str::random(10),
+            //'statut' => fake()->randomElement(['apprenant', 'professeur', 'administrateur']),
         ];
     }
 

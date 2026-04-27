@@ -15,7 +15,10 @@ class UserSeeder extends Seeder
     {
         User::factory()
             ->count(5)
-            ->has(Cours::factory()->count(5))
+            ->has(
+                Cours::factory()
+                    ->count(5)
+            )
             ->create();
     }
 }

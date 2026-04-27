@@ -13,7 +13,11 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours = Cours::with(['user'])->orderBy('date')->orderBy('heure_debut')->get();
+        $cours = Cours::with(['user'])
+            ->whereDate('date', '>=', now()->toDateString())
+            ->orderBy('date')
+            ->orderBy('heure_debut')
+            ->get();
 
         return response()->json($cours);
     }
@@ -38,11 +42,11 @@ class CoursController extends Controller
     }
 
     /**
-     * Display the specified resource (with id))
+     * Display the specified resource (with id)
      */
-    public function show(Cours $cours)
+    public function show(int $id)
     {
-        $cours->load(['user']);
+        $cours = Cours::find($id)->load(['user']);
 
         return response()->json($cours);
     }

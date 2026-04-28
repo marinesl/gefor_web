@@ -13,7 +13,11 @@ class CoursController extends Controller
      */
     public function index()
     {
-        $cours = Cours::with(['user'])->orderBy('date')->orderBy('heure_debut')->get();
+        $cours = Cours::with(['user'])
+            ->whereDate('date', '>=', now()->toDateString())
+            ->orderBy('date')
+            ->orderBy('heure_debut')
+            ->get();
 
         return response()->json($cours);
     }

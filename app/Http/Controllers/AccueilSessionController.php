@@ -9,7 +9,11 @@ class AccueilSessionController extends Controller
 {
     public function getSessions()
     {
-        $cours = Cours::with(['user'])->orderBy('date')->orderBy('heure_debut')->get();
+        $cours = Cours::with(['user'])
+            ->whereDate('date', '>=', now()->toDateString())
+            ->orderBy('date')
+            ->orderBy('heure_debut')
+            ->get();
 
         return view('accueil_session', [
             'cours' => $cours

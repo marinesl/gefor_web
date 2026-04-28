@@ -7,6 +7,15 @@
 @section('content')
     <h1>Page accueil - session</h1>
 
+    <p>Bonjour, {{ Auth::user()->name }}</p>
+
+    <p>
+        <a href="{{ route('logout') }}"
+           class="btn btn-outline-danger">
+            Se déconnecter
+        </a>
+    </p>
+
     <ul>
         @foreach ($cours as $c)
             <li>

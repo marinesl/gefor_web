@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title')</title>
+
+    @stack('scripts')
 </head>
 <body>
     @yield('content')

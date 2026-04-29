@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccueilSessionController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SignatureController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/signature', function () {
         return view('signature');
     })->name('signature');
+
+    Route::post('/signature', [SignatureController::class, 'store'])
+        ->name('signatures.post');
 });
 
 

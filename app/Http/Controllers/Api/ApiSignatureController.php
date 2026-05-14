@@ -20,7 +20,7 @@ class ApiSignatureController extends Controller
         $signature = Signature::create([
             'signature' => $validated['signature'],
             'date'      => now(),
-            'user_id'   => Auth::id(),
+            'user_id'   => $validated['user_id'] ?? Auth::id(),
             'cours_id'  => $validated['cours_id'],
         ]);
 

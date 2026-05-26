@@ -23,6 +23,10 @@ Route::get('/logout',
     [AuthController::class, 'logout']
 )->name('logout');
 
+Route::get('/mobile', function () {
+    return view('mobile');
+})->name('mobile');
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/accueil-session', [AccueilSessionController::class, 'getSessions'])

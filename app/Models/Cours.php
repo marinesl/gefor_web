@@ -22,8 +22,14 @@ class Cours extends Model
     ];
 
     // Un cours appartient à un user
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // Signatures associées à ce cours
+    public function signatures()
+    {
+        return $this->hasMany(Signature::class, 'cours_id');
     }
 }
